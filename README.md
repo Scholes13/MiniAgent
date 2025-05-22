@@ -1,6 +1,40 @@
 # Crypto Airdrop Analyzer
 
-Sistem analisis untuk mengidentifikasi airdrops kripto yang potensial
+Sistem analisis airdrop crypto yang mengumpulkan data dari Twitter, menganalisisnya dengan model AI, dan menyimpan hasilnya dalam database.
+
+## Fitur Utama
+
+- **Twitter Scraper**: Mengumpulkan tweet terbaru dengan hashtag terkait crypto
+- **Analisis AI**: Menggunakan OpenRouter untuk akses ke berbagai model AI
+- **Penyimpanan Database**: Menyimpan hasil analisis untuk referensi
+- **Sistem Fallback Model**: Beralih dari model berbayar ke gratis saat kredit habis
+- **Manajemen Error**: Penanganan kesalahan yang komprehensif dengan retry
+- **Logging yang Jelas**: Log yang informatif dalam bahasa Indonesia
+- **Frontend Modern**: Antarmuka pengguna responsif menggunakan Next.js dan Tailwind CSS
+
+## Struktur Proyek
+
+```
+Crypto
+  ├── api/              # API endpoints
+  ├── backend/          # Backend core
+  │   ├── scraper/      # Twitter scraper
+  │   ├── utils/        # Utilitas dan konfigurasi
+  │   └── data/         # Data yang dikumpulkan
+  ├── database/         # Modul database
+  └── frontend/         # Antarmuka pengguna Next.js
+      ├── app/          # Pages dan routes
+      ├── components/   # Komponen React yang dapat digunakan kembali
+      └── lib/          # Hooks dan utilities
+```
+
+## Penggunaan
+
+1. Pastikan semua dependensi telah diinstal
+2. Konfigurasi kredensial Twitter dan OpenRouter
+3. Jalankan `python backend/airdrop_pipeline.py` untuk mode pengujian
+4. Untuk monitoring berkelanjutan, ubah mode menjadi "continuous"
+5. Jalankan frontend dengan `cd frontend && npm run dev`
 
 ## Fitur
 
@@ -8,6 +42,27 @@ Sistem analisis untuk mengidentifikasi airdrops kripto yang potensial
 - Analisis AI untuk mengevaluasi potensi airdrops
 - Dashboard untuk mengelola dan memonitor analisis
 - Integrasi dengan OpenRouter untuk dukungan AI yang fleksibel
+- Tampilan halaman Airdrops untuk melihat peluang airdrop
+- Halaman analisis interaktif untuk mengevaluasi proyek crypto
+
+## Frontend
+
+Frontend dibangun menggunakan Next.js dan Tailwind CSS, menyediakan:
+
+- **Halaman Airdrop**: Menampilkan daftar peluang airdrop dengan detail seperti nilai perkiraan, legitimasi, dan tingkat risiko
+- **Detail Airdrop**: Tampilan mendetail untuk setiap peluang airdrop, termasuk analisis AI
+- **Halaman Analisis**: Memungkinkan pengguna memasukkan URL Twitter atau nama proyek untuk analisis
+- **Navigasi Responsif**: Mendukung tampilan desktop dan mobile dengan menu yang responsif
+
+### Menjalankan Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend akan berjalan di http://localhost:3000
 
 ## Penggunaan OpenRouter
 
@@ -55,18 +110,6 @@ Body: {"prefer_free": true}
 4. Atur konfigurasi API di `backend/utils/openrouter_config.py`
 5. Jalankan server backend dengan `cd backend && uvicorn api.main:app --reload`
 6. Untuk frontend, jalankan `cd frontend && npm install && npm run dev`
-
-## Struktur Proyek
-
-- `backend/`: API dan layanan backend
-  - `api/`: Endpoints FastAPI 
-  - `data/`: Penyimpanan dan cache data
-  - `scraper/`: Modul scraping media sosial
-  - `utils/`: Utilitas umum dan integrasi
-- `frontend/`: Aplikasi Next.js
-  - `app/`: Komponen dan halaman
-  - `public/`: Aset statis
-- `database/`: Schema dan utilitas database
 
 ## Setup
 
