@@ -254,4 +254,44 @@ Kontribusi selalu diterima. Silakan buat Issue atau Pull Request untuk berkontri
 
 ## Lisensi
 
-[MIT](LICENSE) 
+[MIT](LICENSE)
+
+## Autentikasi
+
+Sistem autentikasi mendukung dua metode login:
+
+1. **Supabase Auth** - Jika Supabase diaktifkan dan terhubung dengan benar
+2. **Local Auth** - Sebagai fallback jika Supabase Auth tidak berfungsi
+
+### Kredensial Demo
+- **Email:** admin@example.com
+- **Password:** password
+
+### Cara Mengatasi Masalah Login
+
+Jika mengalami masalah login:
+
+1. Pastikan halaman login dimuat dengan benar
+2. Gunakan kredensial demo yang telah disediakan
+3. Jika tombol login tidak merespon, coba reload halaman
+4. Jika masih bermasalah, buka Console DevTools dan periksa error
+
+## Pengembangan
+
+### Menjalankan Frontend
+
+```bash
+cd frontend
+npm run dev
+```
+
+Buka [http://localhost:3000](http://localhost:3000)
+
+### Environment Variables
+
+Untuk konfigurasi Supabase, salin file `.env.example` menjadi `.env.local` dan isi kredensial Anda:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+``` 
