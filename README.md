@@ -11,6 +11,7 @@ Sistem analisis airdrop crypto yang mengumpulkan data dari Twitter, menganalisis
 - **Manajemen Error**: Penanganan kesalahan yang komprehensif dengan retry
 - **Logging yang Jelas**: Log yang informatif dalam bahasa Indonesia
 - **Frontend Modern**: Antarmuka pengguna responsif menggunakan Next.js dan Tailwind CSS
+- **Integrasi Supabase**: Menggunakan Supabase untuk database dan autentikasi
 
 ## Struktur Proyek
 
@@ -26,6 +27,7 @@ Crypto
       ├── app/          # Pages dan routes
       ├── components/   # Komponen React yang dapat digunakan kembali
       └── lib/          # Hooks dan utilities
+  ├── scripts/          # Script untuk setup dan konfigurasi
 ```
 
 ## Penggunaan
@@ -44,6 +46,49 @@ Crypto
 - Integrasi dengan OpenRouter untuk dukungan AI yang fleksibel
 - Tampilan halaman Airdrops untuk melihat peluang airdrop
 - Halaman analisis interaktif untuk mengevaluasi proyek crypto
+- Sistem otentikasi melalui Supabase
+- Database Supabase untuk penyimpanan data
+
+## Penggunaan Supabase
+
+Untuk mengatur Supabase:
+
+1. Buat akun di [Supabase](https://supabase.com)
+2. Buat proyek baru
+3. Salin URL dan kunci API Anda ke `.env.local`:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-url.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+4. Jalankan script setup untuk menyiapkan tabel dan data contoh:
+
+```bash
+node scripts/setup-db.js
+```
+
+### Struktur Database
+
+Proyek ini menggunakan dua tabel utama:
+
+1. **projects**: Menyimpan data proyek crypto:
+   - id (primary key)
+   - project_name
+   - token_symbol
+   - description
+   - website_url
+   - twitter_handle
+   - discovery_date
+   - overall_rating
+   - analysis_status
+
+2. **system_logs**: Menyimpan log aktivitas sistem:
+   - id (primary key)
+   - message
+   - level (info, warning, error)
+   - source
+   - created_at
 
 ## Frontend
 
@@ -53,6 +98,7 @@ Frontend dibangun menggunakan Next.js dan Tailwind CSS, menyediakan:
 - **Detail Airdrop**: Tampilan mendetail untuk setiap peluang airdrop, termasuk analisis AI
 - **Halaman Analisis**: Memungkinkan pengguna memasukkan URL Twitter atau nama proyek untuk analisis
 - **Navigasi Responsif**: Mendukung tampilan desktop dan mobile dengan menu yang responsif
+- **Admin Dashboard**: Menampilkan data proyek dari Supabase dan log aktivitas sistem
 
 ### Menjalankan Frontend
 
@@ -63,6 +109,14 @@ npm run dev
 ```
 
 Frontend akan berjalan di http://localhost:3000
+
+### Login Admin
+
+Untuk demo/development, gunakan:
+- Email: admin@example.com
+- Password: password
+
+Atau klik "Demo Login" untuk masuk tanpa kredensial.
 
 ## Penggunaan OpenRouter
 
